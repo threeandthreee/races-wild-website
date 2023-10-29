@@ -77,7 +77,7 @@ v-app
                   width="60px"
                   variant="icon"
                   size="x-large"
-                  v-if="app.event.metadata.twitch"
+                  v-if="app.event.metadata.youtube"
                   :href="app.event.metadata.youtube"
                 )
                   v-img.mt-n1(src="/youtube.svg" width="70px" height="70px")
