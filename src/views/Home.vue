@@ -12,7 +12,7 @@ v-app
       v-btn(
         size="x-large"
         variant="text"
-        width="50%"
+        width="33%"
         color="primary"
         to="/archive"
       ) Archive
@@ -20,10 +20,18 @@ v-app
       v-btn(
         size="x-large"
         variant="text"
-        width="50%"
+        width="34%"
         color="primary"
         to="/players"
       ) Players
+      v-divider(vertical)
+      v-btn(
+        size="x-large"
+        variant="text"
+        width="33%"
+        color="primary"
+        to="/bingo"
+      ) Bingo
     v-divider.mb-4
     upcoming(v-if="app.upcoming.length > 1")
 </template>
