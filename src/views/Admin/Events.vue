@@ -1,22 +1,22 @@
 <template lang="pug">
 div(v-if="app.archive")
-  .d-flex.pt-1
-    v-text-field.mr-4(
-      v-model="search"
-      label="Search"
-      variant="outlined"
-      clearable
-    )
-    v-select(
-      v-model="year"
-      :items="yearOptions"
-      label="Year"
-      variant="outlined"
-      style="max-width:100px"
-      @update:modelValue="app.loadArchive(year)"
-    )
+  v-btn-toggle.mb-4(
+    v-model="eventSet"
+    variant="outlined"
+    divided
+    mandatory
+    color="primary"
+  )
+    v-btn Upcoming
+    v-btn Archive
+  v-text-field(
+    v-model="search"
+    label="Search"
+    variant="outlined"
+    clearable
+  )
   v-data-table(
-    :items="app.archive"
+    :items="eventSet ? app.archive : app.upcoming"
     :search="search"
     :headers="headers"
     @click:row="select"
@@ -136,10 +136,8 @@ const util = useUtilStore()
 
 const loading = ref(false)
 const dialog = ref(false)
+const eventSet = ref(0)
 const search = ref('')
-const year = ref(new Date().getFullYear())
-const yearOptions = Array(2 + year.value - 2022).fill()
-  .map((it, index) => 2022 + index)
 const headers = [
   { title: 'Summary', key: 'summary' },
   { title: 'Date', key: 'start.dateTime' }
@@ -159,13 +157,14 @@ async function update() {
   loading.value = true
   await admin.upsertEventMetadata(app.event.metadata)
   dialog.value = false
-  await app.loadArchive(year.value, true)
+  await app.loadArchive(true)
   loading.value = false
 }
 
 onMounted(async () => {
   loading.value = true
-  await app.loadArchive(year.value)
+  await app.loadUpcoming()
+  await app.loadArchive()
   await app.loadGuides()
   await app.loadPlayers()
   loading.value = false

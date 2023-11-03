@@ -3,21 +3,12 @@ v-app
   v-container.fade-in
     breadcrumbs(:items="[{label:'archive'}]" :loading="!app.archive")
     div(v-if="app.archive")
-      .d-flex
-        v-text-field.mr-4(
-          v-model="search"
-          label="Search"
-          variant="outlined"
-          clearable
-          )
-        v-select(
-          v-model="year"
-          :items="yearOptions"
-          label="Year"
-          variant="outlined"
-          style="max-width:100px"
-          @update:modelValue="app.loadArchive(year)"
-        )
+      v-text-field.mr-4(
+        v-model="search"
+        label="Search"
+        variant="outlined"
+        clearable
+      )
       v-data-table(
         :headers="headers"
         :items="app.archive"
@@ -41,18 +32,15 @@ const app = useAppStore()
 const util = useUtilStore()
 
 const search = ref('')
-const year = ref(new Date().getFullYear())
-const yearOptions = Array(1 + year.value - 2022).fill()
-  .map((it, index) => 2022 + index)
 
 const headers = [
   { title: "Summary", key: "summary" },
   { title: "Date", key: "start.dateTime"}
 ]
-const sort = [{key:"start.dateTime"}]
+const sort = [{key:"start.dateTime", order:"desc"}]
 
 
 onMounted(() => {
-  app.loadArchive(year.value)
+  app.loadArchive()
 })
 </script>

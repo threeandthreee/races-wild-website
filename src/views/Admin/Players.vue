@@ -38,6 +38,13 @@ div(v-if="app.players")
             )
           v-col(cols=12)
             v-text-field(
+              v-model="app.player.discord_id"
+              label="Discord ID"
+              variant="outlined"
+              hide-details
+            )
+          v-col(cols=12)
+            v-text-field(
               v-model="app.player.twitch"
               label="Twitch"
               variant="outlined"
@@ -55,9 +62,11 @@ div(v-if="app.players")
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useAdminStore } from '@/store/admin'
 import { useAppStore } from '@/store/app'
 import { useUtilStore } from '@/store/util'
 
+const admin = useAdminStore()
 const app = useAppStore()
 const util = useUtilStore()
 

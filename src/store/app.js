@@ -42,16 +42,10 @@ export const useAppStore = defineStore('app', {
       if(!this.guides || force)
         this.guides = await ezfetch(`${MONGO}/guides`, null, [])
     },
-    async loadArchive(year, force){
-      let sampleYear
-      try{
-        sampleYear = new Date(this.archive[0].start.dateTime).getFullYear()
-      } catch(err) {}
-      if(year != sampleYear || force) {
-        this.archive = null
-        this.archive = await ezfetch(`${CAL}/cal/year/${year}`, null, [])
+    async loadArchive(force){
+      if(!this.archive || force)
+        this.archive = await ezfetch(`${CAL}/cal/archive`, null, [])
           .then(data => data.items)
-      }
     },
     async loadEvent(id, force){
       if(!id){ // next event
