@@ -9,7 +9,8 @@ div
       :to="`/event/${event.id}`"
     )
       .d-flex.align-center
-        v-chip.mr-2.flex-shrink-0(color="primary") {{util.format(event.start.dateTime, 'MMM D')}}
+        div(style="width:80px")
+          v-chip.mr-2.flex-shrink-0(color="primary") {{util.format(event.start.dateTime, 'MMM D')}}
         span {{event.summary}}
 </template>
 
@@ -20,5 +21,5 @@ import { useUtilStore } from '@/store/util'
 
 const app = useAppStore()
 const util = useUtilStore()
-const events = computed(() => app.upcoming.slice(1,6))
+const events = computed(() => app.upcoming.filter(it => it.summary != 'TBD'))
 </script>
