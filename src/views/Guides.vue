@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-container.fade-in
+  v-container.fade-in(style="max-width:600px")
     breadcrumbs(:items="[{label:'guides'}]" :loading="!app.guides")
     .d-flex.flex-column.align-start(v-if="app.guides")
       v-btn(

@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-container.event.fade-in
+  v-container.event.fade-in(style="max-width:600px")
     breadcrumbs(:items="crumbs" :loading="!app.event")
     div(v-if="app.event")
       div(v-if="!app.event.id")

@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-container.fade-in
+  v-container.fade-in(style="max-width:600px")
     breadcrumbs(:items="[{label:'players'}]" :loading="!app.players")
     div(v-if="app.players")
       .d-flex

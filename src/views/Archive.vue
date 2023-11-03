@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-container.fade-in
+  v-container.fade-in(style="max-width:600px")
     breadcrumbs(:items="[{label:'archive'}]" :loading="!app.archive")
     div(v-if="app.archive")
       v-text-field.mr-4(
