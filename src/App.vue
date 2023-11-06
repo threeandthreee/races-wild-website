@@ -3,7 +3,11 @@
 </template>
 
 <script setup>
-  //
+import { useTheme } from 'vuetify'
+
+const theme = useTheme()
+
+theme.global.name.value = (window.matchMedia && window.matchMedia("(prefers-color-scheme:dark)").matches) ? 'dark' : 'light'
 </script>
 
 <style>
