@@ -44,7 +44,7 @@ v-app
               .v-divider.my-4
               .text-overline.mt-n2 Relevant Guides
               v-card.mb-4(
-                v-for="guide of app.guides.filter(it => app.event.metadata.guides.includes(it._id))"
+                v-for="guide of app.event.metadata.guides.map(id => app.guides.find(it => it._id == id)).filter(it => it)"
                 variant="elevated"
               )
                 v-card-title {{guide.title}}
