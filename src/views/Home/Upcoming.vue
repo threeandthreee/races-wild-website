@@ -21,5 +21,5 @@ import { useUtilStore } from '@/store/util'
 
 const app = useAppStore()
 const util = useUtilStore()
-const events = computed(() => app.upcoming.filter(it => it.summary != 'TBD'))
+const events = computed(() => app.upcoming.filter(it => it.summary != 'Break'))
 </script>
